@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public enum ACAO {  CIMA, BAIXO, ESQUERDA, DIREITA}
+   
+    public Transform areaBlocos;
 
-    public Transform posicaoBloco;
-
-    public List<ACAO> listaInput;
+    public List<GameObject> listaInput;
     public List<ACAO> caminhoCorreto;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        listaInput = new List<ACAO>();
+        listaInput = new List<GameObject>();
     }
 
     public void fimDaPartida()
@@ -41,5 +41,30 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Personagem.instance.transform.position = Personagem.instance.posicaoInicial;
+    }
+
+    public void bt_Resetar()
+    {
+        foreach(GameObject go in listaInput)
+        {
+            Destroy(go);
+        }
+        listaInput.Clear();
+    }
+
+    public void bt_Play()
+    {
+        StartCoroutine(percorrerLista());
+    }
+
+    IEnumerator percorrerLista()
+    {
+        foreach (GameObject go in GameManager.instance.listaInput)
+        {
+            Personagem.instance.movimentar(go.GetComponent<IconeBlocoLogico>().acao);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        GameManager.instance.fimDaPartida();
     }
 }

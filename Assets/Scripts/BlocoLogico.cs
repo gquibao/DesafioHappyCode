@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BlocoLogico : MonoBehaviour
 {
-    public GameManager.ACAO acao;
-    public GameObject cubo;
+    public GameObject iconeBloco;
     public Vector3 posicaoInicial;
     public bool hasCollided;
 
@@ -30,10 +29,10 @@ public class BlocoLogico : MonoBehaviour
         Debug.Log("Soltou");
         if (hasCollided)
         {
-            GameManager.instance.listaInput.Add(acao);
-            GameObject go = Instantiate(cubo);
-            Transform posicaoBloco = GameManager.instance.posicaoBloco;
-            go.transform.position = new Vector2(posicaoBloco.position.x + GameManager.instance.listaInput.Count - 1, posicaoBloco.position.y);
+            GameObject go = Instantiate(iconeBloco, GameManager.instance.areaBlocos);
+            GameManager.instance.listaInput.Add(go);
+            /*Transform posicaoBloco = GameManager.instance.posicaoBloco;
+            go.transform.position = new Vector2(posicaoBloco.position.x + GameManager.instance.listaInput.Count - 1, posicaoBloco.position.y);*/
         }
         transform.position = posicaoInicial;
     }
