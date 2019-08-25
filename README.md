@@ -111,6 +111,7 @@ Desafio de sequenciamento logico proposto pela Happy Code
 - Crie uma classe para o objeto que será mostrado na lista de blocos selecionados pelo usuário.
 
 -------------------------------------- Ícone Bloco ------------------------------------------------------------------------
+	
 	Atributos:
 		- Uma variável recebendo um valor do enum localizado na classe Controladora.
 		
