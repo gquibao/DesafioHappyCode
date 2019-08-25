@@ -8,17 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public enum ACAO {  CIMA, BAIXO, ESQUERDA, DIREITA}
+    public enum ACAO { CIMA, BAIXO, ESQUERDA, DIREITA }
 
     public CanvasGroup canvasGroupBlocos;
-   
+
     public Transform areaBlocos;
 
     public GameObject telaFinal;
 
     public TextMeshProUGUI mensagemFinal;
+    public TextMeshProUGUI valorPontos;
 
     public List<GameObject> listaInput;
+
+    public int movimentosMinimosFase;
+    private int pontos;
 
     private void Awake()
     {
@@ -38,19 +42,31 @@ public class GameManager : MonoBehaviour
         if (Personagem.instance.objetivoAlcancado)
         {
             mensagemFinal.text = "SEQUÊNCIA CORRETA!";
+            if (listaInput.Count <= movimentosMinimosFase)
+            {
+                pontos = 3;
+            }
+
+            else
+            {
+                pontos = 2;
+            }
             mensagemFinal.color = Color.green;
         }
 
         else
         {
             mensagemFinal.text = "SEQUÊNCIA INCORRETA!";
+            pontos = 0;
             mensagemFinal.color = Color.red;
         }
+
+        valorPontos.text = pontos.ToString();
     }
 
     public void bt_Resetar()
     {
-        foreach(GameObject go in listaInput)
+        foreach (GameObject go in listaInput)
         {
             Destroy(go);
         }

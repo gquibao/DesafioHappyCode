@@ -7,6 +7,7 @@ public class Personagem : MonoBehaviour
     public static Personagem instance;
     public Vector3 posicaoInicial;
     public bool objetivoAlcancado;
+    public bool saiuDoCaminho;
 
     private void Awake()
     {

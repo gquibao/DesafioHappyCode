@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Objetivo
+  - Caminho
   layers:
   - Default
   - TransparentFX
