@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public enum ACAO {  CIMA, BAIXO, ESQUERDA, DIREITA}
+
+    public CanvasGroup canvasGroupBlocos;
    
     public Transform areaBlocos;
+
+    public GameObject telaFinal;
+
+    public TextMeshProUGUI mensagemFinal;
 
     public List<GameObject> listaInput;
     public List<ACAO> caminhoCorreto;
@@ -21,26 +29,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         listaInput = new List<GameObject>();
+        telaFinal.SetActive(false);
     }
 
     public void fimDaPartida()
     {
-        if(Personagem.instance.objetivoAlcancado)
+        telaFinal.SetActive(true);
+
+        if (Personagem.instance.objetivoAlcancado)
         {
-            Debug.Log("Fim");
-            Debug.Log(listaInput.Count);
+            mensagemFinal.text = "SEQUÊNCIA CORRETA!";
+            mensagemFinal.color = Color.green;
         }
 
         else
         {
-            StartCoroutine(reiniciarLevel());
+            mensagemFinal.text = "SEQUÊNCIA INCORRETA!";
+            mensagemFinal.color = Color.red;
         }
-    }
-
-    IEnumerator reiniciarLevel()
-    {
-        yield return new WaitForSeconds(1);
-        Personagem.instance.transform.position = Personagem.instance.posicaoInicial;
     }
 
     public void bt_Resetar()
@@ -54,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void bt_Play()
     {
+        canvasGroupBlocos.blocksRaycasts = false;
         StartCoroutine(percorrerLista());
     }
 
@@ -64,7 +71,18 @@ public class GameManager : MonoBehaviour
             Personagem.instance.movimentar(go.GetComponent<IconeBlocoLogico>().acao);
             yield return new WaitForSeconds(0.5f);
         }
+        fimDaPartida();
+    }
 
-        GameManager.instance.fimDaPartida();
+    public void bt_TentarNovamente()
+    {
+        telaFinal.SetActive(false);
+        Personagem.instance.transform.position = Personagem.instance.posicaoInicial;
+        canvasGroupBlocos.blocksRaycasts = true;
+    }
+
+    public void bt_VoltarMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

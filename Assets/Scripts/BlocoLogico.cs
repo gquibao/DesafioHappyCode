@@ -13,15 +13,10 @@ public class BlocoLogico : MonoBehaviour
         posicaoInicial = transform.position;
     }
 
-    public void OnMouseDown()
-    {
-        Debug.Log("Pegou");
-    }
-
     public void OnMouseDrag()
     {
-        Debug.Log("Segurando");
-        transform.localPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, -1);
+        if(GameManager.instance.canvasGroupBlocos.blocksRaycasts)
+            transform.localPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, -1);
     }
 
     public void OnMouseUp()
