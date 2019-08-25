@@ -11,6 +11,10 @@ public class Personagem : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
         posicaoInicial = transform.position;
     }
 

@@ -6,7 +6,7 @@ public class BlocoLogico : MonoBehaviour
 {
     public GameObject iconeBloco;
     public Vector3 posicaoInicial;
-    public bool hasCollided;
+    public bool colidiuAreaBlocos;
 
     private void Start()
     {
@@ -21,24 +21,21 @@ public class BlocoLogico : MonoBehaviour
 
     public void OnMouseUp()
     {
-        Debug.Log("Soltou");
-        if (hasCollided)
+        if (colidiuAreaBlocos)
         {
             GameObject go = Instantiate(iconeBloco, GameManager.instance.areaBlocos);
             GameManager.instance.listaInput.Add(go);
-            /*Transform posicaoBloco = GameManager.instance.posicaoBloco;
-            go.transform.position = new Vector2(posicaoBloco.position.x + GameManager.instance.listaInput.Count - 1, posicaoBloco.position.y);*/
         }
         transform.position = posicaoInicial;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        hasCollided = true;
+        colidiuAreaBlocos = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        hasCollided = false;
+        colidiuAreaBlocos = false;
     }
 }

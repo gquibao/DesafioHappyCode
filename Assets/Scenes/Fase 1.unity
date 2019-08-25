@@ -1354,7 +1354,7 @@ MonoBehaviour:
   iconeBloco: {fileID: 7718644535675964033, guid: 253983b7c9fd5cd438aa072ecaba2abb,
     type: 3}
   posicaoInicial: {x: 0, y: 0, z: 0}
-  hasCollided: 0
+  colidiuAreaBlocos: 0
 --- !u!61 &732781299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1763,7 +1763,7 @@ MonoBehaviour:
   iconeBloco: {fileID: 927565795411118607, guid: 556a09f02cfc4d446ade3c21fdb632b8,
     type: 3}
   posicaoInicial: {x: 0, y: 0, z: 0}
-  hasCollided: 0
+  colidiuAreaBlocos: 0
 --- !u!61 &886766232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2617,7 +2617,7 @@ MonoBehaviour:
   iconeBloco: {fileID: 8051733235730970540, guid: a5e14b737f16d5e4c8d31eaa1a7ee5ed,
     type: 3}
   posicaoInicial: {x: 0, y: 0, z: 0}
-  hasCollided: 0
+  colidiuAreaBlocos: 0
 --- !u!61 &1206908214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3535,7 +3535,7 @@ MonoBehaviour:
   iconeBloco: {fileID: 2496529861176441760, guid: 0526954fcf5d2f444947f5c1caf67878,
     type: 3}
   posicaoInicial: {x: 0, y: 0, z: 0}
-  hasCollided: 0
+  colidiuAreaBlocos: 0
 --- !u!61 &1550605005
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3735,7 +3735,6 @@ MonoBehaviour:
   telaFinal: {fileID: 1105624959}
   mensagemFinal: {fileID: 2061061779}
   listaInput: []
-  caminhoCorreto: 
 --- !u!4 &1681465017
 Transform:
   m_ObjectHideFlags: 0

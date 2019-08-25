@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI mensagemFinal;
 
     public List<GameObject> listaInput;
-    public List<ACAO> caminhoCorreto;
 
     private void Awake()
     {
@@ -66,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator percorrerLista()
     {
-        foreach (GameObject go in GameManager.instance.listaInput)
+        foreach (GameObject go in listaInput)
         {
             Personagem.instance.movimentar(go.GetComponent<IconeBlocoLogico>().acao);
             yield return new WaitForSeconds(0.5f);
