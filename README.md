@@ -8,6 +8,7 @@ Desafio de sequenciamento logico proposto pela Happy Code
 - Crie uma classe que controle as funcionalidades da cena como o loop do jogo, a interface, pontuação, a sequência de blocos lógicos colocados pelo usuário, etc.
 
 --------------------------------------  Controladora ----------------------------------------------------------------------   
+    
     Atributos:
       - Um enum com as possíveis direções que o jogador pode ir (esquerda, direita, cima e baixo).
       - Um Transform que será o objeto "pai" da lista de blocos inseridos pelo usuário, ou seja, onde eles irão aparecer. 
@@ -51,28 +52,28 @@ Desafio de sequenciamento logico proposto pela Happy Code
 
 -------------------------------------- Bloco Lógico ----------------------------------------------------------------------
 
-  Atributos:
-    - Um GameObject para o Prefab do objeto que será instanciado na interface.
-    - Um Vector3 guardando a posição inicial do bloco.
-    - um bool para verificar se o objeto colidiu com o a área de fixar os blocos.
-  
-  Métodos:
-    - Start()
-      - Vector3 receber a posição inicial do objeto.
-      
-    - OnMouseDrag()
-      - Fazer a posição do objeto receber a posição do cursor.
-      
-    - OnMouseUp()
-      - Se o bool tiver valor true, instanciar o GameObject do prefab na posição definida como área para os blocos na classe Controladora.
-      - Adicionar o novo objeto instanciado na lista localizada na classe Controladora.
-      
-    - OnTriggerEnter2D()
-      - Fazer bool receber o valor true.
-      
-    - OnTriggerExit2D()
-      - Fazer bool recer o valor false.
-      
+	  Atributos:
+	    - Um GameObject para o Prefab do objeto que será instanciado na interface.
+	    - Um Vector3 guardando a posição inicial do bloco.
+	    - um bool para verificar se o objeto colidiu com o a área de fixar os blocos.
+
+	  Métodos:
+	    - Start()
+	      - Vector3 receber a posição inicial do objeto.
+
+	    - OnMouseDrag()
+	      - Fazer a posição do objeto receber a posição do cursor.
+
+	    - OnMouseUp()
+	      - Se o bool tiver valor true, instanciar o GameObject do prefab na posição definida como área para os blocos na classe Controladora.
+	      - Adicionar o novo objeto instanciado na lista localizada na classe Controladora.
+
+	    - OnTriggerEnter2D()
+	      - Fazer bool receber o valor true.
+
+	    - OnTriggerExit2D()
+	      - Fazer bool recer o valor false.
+
 --------------------------------------------------------------------------------------------------------------------------
 
 - Crie uma classe para o Personagem.
