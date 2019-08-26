@@ -132,3 +132,5 @@ Desafio de sequenciamento logico proposto pela Happy Code
 - Crie um objeto para ser o Personagem, insira os componentes Rigidbody2D e BoxCollider2D. No Rigidbody2D, na área Body Type, selecione Kinematic e no BoxCollider2D selecione Is Trigger e deixe ele como true.
 - Crie um objeto para o Objetivo final onde o jogador deve chegar. Insira um componente BoxCollider2D nele e defina Is Trigger como true também. Em seguida, vá para a área Tag, bem no topo do Inspector e crie uma nova tag, chame-a de Objetivo e atribua essa tag ao Game Object.
 - Em seguida crie um percurso que o jogador deverá fazer com objetos como Cubos, por exemplo. Posicione-os como desejar.
+- Crie um novo objeto Image no Canvas e crie um objeto de texto dentro dele. Agora crie dois botões, um para reiniciar a fase e outro para voltar para o menu principal. Arraste o objeto Controladora para os eventos dentro dos botões e escolha a função bt_TentarNovamente para o botão de reiniciar a fase e o bt_VoltarMenu para o botão de retornar.
+- Atribua o objeto com o texto final para a variável de texto na classe Controladora.
