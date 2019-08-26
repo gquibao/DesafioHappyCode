@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public Transform areaBlocos;
 
     public GameObject telaFinal;
+    public GameObject[] estrelas;
 
     public TextMeshProUGUI mensagemFinal;
-    public TextMeshProUGUI valorPontos;
 
     public List<GameObject> listaInput;
 
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void fimDaPartida()
     {
+        StopAllCoroutines();
         telaFinal.SetActive(true);
 
         if (Personagem.instance.objetivoAlcancado)
@@ -61,7 +62,11 @@ public class GameManager : MonoBehaviour
             mensagemFinal.color = Color.red;
         }
 
-        valorPontos.text = pontos.ToString();
+
+        for(int i = 0; i < pontos; i++)
+        {
+            estrelas[i].SetActive(true);
+        }
     }
 
     public void bt_Resetar()
@@ -99,5 +104,10 @@ public class GameManager : MonoBehaviour
     public void bt_VoltarMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void bt_ProximaFase()
+    {
+        SceneManager.LoadScene("Fase 2");
     }
 }

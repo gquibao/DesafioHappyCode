@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Objetivo
   - Caminho
+  - Obstaculo
   layers:
   - Default
   - TransparentFX

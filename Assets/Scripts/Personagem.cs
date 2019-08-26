@@ -52,6 +52,12 @@ public class Personagem : MonoBehaviour
         {
             objetivoAlcancado = true;
         }
+
+        if (collision.tag == "Obstaculo")
+        {
+            saiuDoCaminho = true;
+            GameManager.instance.fimDaPartida();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
