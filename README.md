@@ -1,5 +1,5 @@
 # DesafioHappyCode
-Desafio de sequenciamento logico proposto pela Happy Code
+Desafio de sequenciamento lógico proposto pela Happy Code
 
  ----- Passo a passo -----
 
@@ -15,16 +15,26 @@ Desafio de sequenciamento logico proposto pela Happy Code
       - Um Text ou TextMeshProUGUI para mostrar a mensagem final (Percurso Correto ou Incorreto).
       - Um GameObject para salvar o objeto da tela final. Ele vai fazer com que a mensagem final apareça ou desapareça no decorrer da partida.
       - Uma lista que guarde GameObjects que será a lista de blocos inseridos pelo jogador.
+      - Uma variável do tipo int para armazenar os pontos do jogador.
+      - Um Array de GameObjects para armazenar os objetos das estrelas da tela final (onde serão mostrados os pontos).
+      - Um AudioSource
+      - Dois AudioClip, um para o som de vitória e outro para o som de derrota.
 
     Métodos:
       - Start()
         - Inicializando a lista de GameObjects.
+	- Desativar os GameObjects de todas as estrelas no array de estrelas
 
       - FimDaPartida()
+      	- Desativar os GameObjects de todas as estrelas no array de estrelas
         - Ligando o GameObject da tela final, deixando-o visível.
         - Verificar se o jogador chegou no objetivo final.
           - Se chegou, fazer o texto da mensagem final receber uma string "SEQUÊNCIA CORRETA!" e transformar a cor da fonte em verde.
-          - Se não chegou, fazer o texto da mensagem final receber uma string "SEQUÊNCIA INCORRETA!" e transformar a cor da fonte em vermelho.
+          - Se não chegou ou então o Personagem colidiu com um obstáculo, fazer o texto da mensagem final receber uma string "SEQUÊNCIA INCORRETA!" e transformar a cor da fonte em vermelho.
+	  - Adiciona pontos a variável de armazenar pontos. Caso o jogador finalize a partida na quantidade mínima necessária para passar de fase, ganha 3 pontos. Caso chegue no final, porém por um trajeto mais comprido, ganha 2 pontos. Se não chegar no final, não pontua.
+	  - Ativar os GameObjects das estrelas no array de estrelas, dependendo da quantidade de pontos que fez.
+	  - Se o jogador vencer, atribuir o AudioClip de vitória ao AudioSource.clip, se perder, atribuir o audio de derrota.
+	  - Dar play no AudioSource.
 
       - bt_Resetar()
         - Deletar os GameObjects com as direções inseridas pelo jogador.
@@ -83,6 +93,8 @@ Desafio de sequenciamento logico proposto pela Happy Code
 	Atributos:
 		- Vector3 guardando a posição inicial do personagem.
 		- bool se o jogador alcançou o objetivo.
+		- bool caso o personagem tenha colidido com algum obstáculo definido no trajeto.
+		- Um AudioSource para o som de movimento do personagem.
 
 	Métodos:
 
@@ -97,11 +109,14 @@ Desafio de sequenciamento logico proposto pela Happy Code
 				- Se enum = BAIXO, fazer a variável local y receber o valor - 1.
 				- Se enum = CIMA, fazer a variável local y receber o valor + 1.
 			- Transform.position do personagem receber um novo Vector2 com sua posição atual no eixo X somando o valor da variável local X e no eixo Y somando a variável local Y.
+			- Dar play no AudioSource.
 
 
 		- OnTriggerEnter2D()
 			- Verificar se a tag do objeto que colidiu é "Objetivo".
 				- Se sim, o bool verificando se o jogador alcançou o objetivo recebe o valor de true.
+			- Verificar se a tag do objeto que colidiu é "Obstaculo".
+				- Se sim, o bool que verifica se o jogador colidiu com um obstáculo recebe o valor de true e lança a função FimDaPartida() da classe Controladora, sendo um Game Over instantâneo.
 
 		- OnTriggerExit2D()
 			- Verificar se a tag do objeto que deixou de colidir é "Objetivo".
@@ -134,3 +149,7 @@ Desafio de sequenciamento logico proposto pela Happy Code
 - Em seguida crie um percurso que o jogador deverá fazer com objetos como Cubos, por exemplo. Posicione-os como desejar.
 - Crie um novo objeto Image no Canvas e crie um objeto de texto dentro dele. Agora crie dois botões, um para reiniciar a fase e outro para voltar para o menu principal. Arraste o objeto Controladora para os eventos dentro dos botões e escolha a função bt_TentarNovamente para o botão de reiniciar a fase e o bt_VoltarMenu para o botão de retornar.
 - Atribua o objeto com o texto final para a variável de texto na classe Controladora.
+- Posicione 3 objetos dentro da tela final, com a arte de uma estrela e atribua os 3 ao array de GameObjects dentro da classe Controladora.
+- Para a arte do jogo, pegue os assets e posicione da forma que achar melhor pelo mapa.
+- Crie um GameObject com um BoxCollider2D, dê a ele a tag "Obstaculo" e posicione-o em algum local que impeça o jogador de cortar um caminho no seu level. Assim caso ele tente atravessar esse pedaço, a partida será encerrada com uma derrota.
+(Recomendo que esta parte do cenário fique bem clara que seja uma área que não dá pra passar, só pra não ter risco do jogador se sentir enganado).
