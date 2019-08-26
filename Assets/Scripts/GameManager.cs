@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     public int movimentosMinimosFase;
     private int pontos;
 
+    public AudioSource source;
+    public AudioClip vitoria;
+    public AudioClip derrota;
+
     private void Awake()
     {
         instance = this;
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         listaInput = new List<GameObject>();
         telaFinal.SetActive(false);
+        pontos = 0;
     }
 
     public void fimDaPartida()
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
         if (Personagem.instance.objetivoAlcancado)
         {
             mensagemFinal.text = "SEQUÊNCIA CORRETA!";
+            source.clip = vitoria;
             if (listaInput.Count <= movimentosMinimosFase)
             {
                 pontos = 3;
@@ -58,15 +64,17 @@ public class GameManager : MonoBehaviour
         else
         {
             mensagemFinal.text = "SEQUÊNCIA INCORRETA!";
+            source.clip = derrota;
             pontos = 0;
             mensagemFinal.color = Color.red;
         }
-
 
         for(int i = 0; i < pontos; i++)
         {
             estrelas[i].SetActive(true);
         }
+
+        source.Play();
     }
 
     public void bt_Resetar()
@@ -76,6 +84,7 @@ public class GameManager : MonoBehaviour
             Destroy(go);
         }
         listaInput.Clear();
+        pontos = 0;
     }
 
     public void bt_Play()

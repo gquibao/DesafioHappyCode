@@ -8,6 +8,7 @@ public class Personagem : MonoBehaviour
     public Vector3 posicaoInicial;
     public bool objetivoAlcancado;
     public bool saiuDoCaminho;
+    public AudioSource source;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class Personagem : MonoBehaviour
         }
 
         transform.position = new Vector2(transform.position.x + x, transform.position.y + y);
+        source.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
