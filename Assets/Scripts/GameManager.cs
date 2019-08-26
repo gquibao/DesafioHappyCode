@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         telaFinal.SetActive(true);
 
+        foreach(GameObject estrela in estrelas)
+        {
+            estrela.SetActive(false);
+        }
+
         if (Personagem.instance.objetivoAlcancado)
         {
             mensagemFinal.text = "SEQUÊNCIA CORRETA!";
